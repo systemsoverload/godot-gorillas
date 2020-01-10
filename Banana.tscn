@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Banana.gd" type="Script" id=1]
+[ext_resource path="res://assets/banana.png" type="Texture" id=2]
+[ext_resource path="res://assets/throw.ogg" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Spin"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CollisionShape2D:rotation_degrees")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0, 0.0, 90.0, 90.0 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 2.02775
+height = 3.4712
+
+[node name="Banana" type="RigidBody2D" groups=[
+"Dynamic",
+]]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.0610428, 0 )
+scale = Vector2( 1.02442, 1 )
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="SpriteAnimator" type="AnimationPlayer" parent="Sprite"]
+autoplay = "Spin"
+anims/Spin = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.175821, 0.0292392 )
+shape = SubResource( 2 )
+
+[node name="ThrowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
