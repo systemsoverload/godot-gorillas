@@ -19,10 +19,6 @@ config/name="Gorillas"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-RandomSeed="*res://RandomSeed.gd"
-
 [display]
 
 window/size/width=640
@@ -55,6 +51,18 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[input]
+
+ui_refresh={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/physics_fps=120
 
 [rendering]
 

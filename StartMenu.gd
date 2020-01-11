@@ -7,3 +7,7 @@ func _ready():
 	VisualServer.set_default_clear_color(Color.blue)
 	gorilla_1.play('Dance')
 	gorilla_2.play('Dance')
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		get_tree().change_scene("res://World.tscn")

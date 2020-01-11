@@ -8,6 +8,7 @@ extents = Vector2( 36, 75 )
 
 [node name="Building" type="Area2D" groups=[
 "Dynamic",
+"CollisionBuildings",
 ]]
 position = Vector2( 50, 110 )
 script = ExtResource( 1 )
@@ -22,4 +23,3 @@ margin_right = 36.0
 margin_bottom = 75.0
 color = Color( 0, 0.658824, 0, 1 )
 script = ExtResource( 2 )
-[connection signal="body_entered" from="." to="." method="_on_Building_body_entered"]

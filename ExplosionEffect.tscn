@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ExplosionEffect.gd" type="Script" id=1]
+[ext_resource path="res://assets/explosion.png" type="Texture" id=2]
+[ext_resource path="res://assets/small-explosion.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/explosion_large.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "explode"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 5 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "explode"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 5 ]
+}
+
+[node name="ExplosionEffect" type="Node2D" groups=[
+"Dynamic",
+]]
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"CollisionA",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="SmallExplosion" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+hframes = 6
+frame = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SmallExplosion"]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SmallExplosion"]
+autoplay = "explode"
+anims/explode = SubResource( 1 )
+
+[node name="LargeExplosion" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 4 )
+hframes = 6
+frame = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LargeExplosion"]
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LargeExplosion"]
+autoplay = "explode"
+anims/explode = SubResource( 2 )

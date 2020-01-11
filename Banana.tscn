@@ -37,9 +37,10 @@ tracks/1/keys = {
 radius = 2.02775
 height = 3.4712
 
-[node name="Banana" type="RigidBody2D" groups=[
+[node name="Banana" type="Area2D" groups=[
 "Dynamic",
 ]]
+z_index = 10
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://pixel_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://NumericLineEdit.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="NumericLineEdit" type="LineEdit"]
+margin_right = 40.0
+margin_bottom = 14.0
+focus_mode = 1
+custom_styles/read_only = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+max_length = 3
+focus_mode = 1
+context_menu_enabled = false
+caret_blink = true
+script = ExtResource( 2 )
+[connection signal="text_changed" from="." to="." method="_on_NumericLineEdit_text_changed"]

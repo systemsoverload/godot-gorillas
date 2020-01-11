@@ -1,0 +1,155 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ConfigMenu.gd" type="Script" id=1]
+[ext_resource path="res://pixel_font.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="ConfigMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Control" type="Control" parent="."]
+margin_left = 60.0
+margin_right = 700.0
+margin_bottom = 320.0
+
+[node name="Fields" type="VBoxContainer" parent="Control"]
+editor/display_folded = true
+margin_left = 84.0
+margin_top = 107.0
+margin_right = 556.0
+margin_bottom = 213.0
+
+[node name="Player1Name" type="HBoxContainer" parent="Control/Fields"]
+margin_right = 472.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Control/Fields/Player1Name"]
+margin_right = 360.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "Name of Player 1 (Default = 'Player 1'):"
+
+[node name="Value" type="LineEdit" parent="Control/Fields/Player1Name"]
+margin_left = 364.0
+margin_right = 472.0
+margin_bottom = 14.0
+custom_styles/read_only = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Spacer" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 18.0
+margin_right = 472.0
+margin_bottom = 18.0
+
+[node name="Player2Name" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 22.0
+margin_right = 472.0
+margin_bottom = 36.0
+
+[node name="Label" type="Label" parent="Control/Fields/Player2Name"]
+margin_right = 360.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "Name of Player 2 (Default = 'Player 2'):"
+
+[node name="Value" type="LineEdit" parent="Control/Fields/Player2Name"]
+margin_left = 364.0
+margin_right = 472.0
+margin_bottom = 14.0
+custom_styles/read_only = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Spacer2" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 40.0
+margin_right = 472.0
+margin_bottom = 40.0
+
+[node name="Points" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 44.0
+margin_right = 472.0
+margin_bottom = 58.0
+
+[node name="Label" type="Label" parent="Control/Fields/Points"]
+margin_right = 333.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "Gravity in Meters/Sec ( Earth = 9.8)?"
+
+[node name="Value" type="LineEdit" parent="Control/Fields/Points"]
+margin_left = 337.0
+margin_right = 445.0
+margin_bottom = 14.0
+custom_styles/read_only = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Spacer3" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 62.0
+margin_right = 472.0
+margin_bottom = 62.0
+
+[node name="Gravity" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 66.0
+margin_right = 472.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="Control/Fields/Gravity"]
+margin_right = 351.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "Play to how many points ( Default = 3)?"
+
+[node name="Value" type="LineEdit" parent="Control/Fields/Gravity"]
+margin_left = 355.0
+margin_right = 463.0
+margin_bottom = 14.0
+custom_styles/read_only = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Spacer4" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 84.0
+margin_right = 472.0
+margin_bottom = 84.0
+
+[node name="Gravity2" type="HBoxContainer" parent="Control/Fields"]
+margin_top = 88.0
+margin_right = 472.0
+margin_bottom = 88.0
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = 84.0
+margin_top = 195.0
+margin_right = 450.0
+margin_bottom = 209.0
+custom_fonts/font = ExtResource( 2 )
+text = "--------------"
+align = 1
+
+[node name="Instructions2" type="Label" parent="Control"]
+margin_left = 29.05
+margin_top = 228.2
+margin_right = 501.05
+margin_bottom = 293.2
+custom_fonts/font = ExtResource( 2 )
+text = "V = View Intro
+P = Play Game
+
+Your Choice?"
+align = 1
