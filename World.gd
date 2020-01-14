@@ -1,15 +1,24 @@
 extends Node
 
-onready var Building = preload("res://Building.tscn")
-
 signal level_ready
+
+onready var Building = preload("res://Building.tscn")
+onready var WeatherVane = $WeatherVane
+var wind_speed
+
 
 func _ready():
 	VisualServer.set_default_clear_color(Color.blue)
-	# Seed random
-	randomize()
-	
 	generate_buildings()
+	set_wind()
+	
+func set_wind():
+	"""Generate a random value to be applied as wind force with every level"""
+	wind_speed = Global.randi_range(0, 15)
+	var directions = ["right", "left"]
+	directions.shuffle()
+	WeatherVane.init(directions[0], wind_speed)
+	
 	
 func generate_buildings():
 	var last_x = 0
@@ -36,8 +45,8 @@ func generate_buildings():
 		last_x = next_x
 		building.global_position.x = next_x
 		
-		# Place bottom edge of building on the bottom of the screen
-		building.global_position.y = vp_size.y / 2 - building.extents.y
+		# Place bottom edge of building on the bottom of the screen + a bit of padding for the weather vane
+		building.global_position.y = (vp_size.y / 2 - building.extents.y) - 15
 		
 	Global.level_ready(buildings)
 

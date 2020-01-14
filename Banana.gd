@@ -4,9 +4,6 @@ signal hit_enemy_gorilla
 
 const explosion_effect = preload("res://ExplosionEffect.tscn")
 
-#FIXME - this should be owned by the world not by every banana
-export (Vector2) var GRAVITY = Vector2(0, 200)
-
 var angle
 var hit_building = false
 var hit_gorilla = false
@@ -25,25 +22,22 @@ func create_hit_effect(size):
 	hit_effect.global_position = global_position
 
 func init(angle, impulse, direction):
-	# NOTE - Fudge factor to bring the velocity values closer to inline with the original
+	# NOTE - Fudge factor to bring the "velocity" values closer to inline with the original
 	impulse += 120
-
+	
 	velocity = Vector2(cos(deg2rad(angle)) * impulse * direction.x, 
 					   sin(deg2rad(angle)) * impulse) * direction.y
 	
 func _physics_process(delta):
 	if not stopped:
 		position += velocity * delta
-		velocity = velocity + delta * GRAVITY
+		velocity = velocity + delta * Global.gravity * Global.wind
 		hit_check()
 
 func hit_check():
-	# FIXME - Minor bug here - overlapping code does not take into account if there is a gorilla IN the overlapping collisions.
-	# Any collision involving a gorilla should be a hit
 	overlapping = false
 	var enemy_gorilla_hit
 	for x in get_overlapping_areas():
-		# XXX - Gross duck-typing for isinstance checks, better way maybe?
 		if x.is_in_group("CollisionBuildings"):
 			hit_building = true
 		

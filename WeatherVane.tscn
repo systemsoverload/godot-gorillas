@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://WeatherVane.gd" type="Script" id=1]
+
+[node name="WeatherVane" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ArrowHead" type="Polygon2D" parent="."]
+position = Vector2( 20, -2 )
+z_index = 10
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( 300, 355, 290, 360, 290, 350 )
+
+[node name="ArrowShaft" type="Polygon2D" parent="."]
+position = Vector2( 20, -2 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( 290, 357, 290, 353, 285, 353, 285, 357 )

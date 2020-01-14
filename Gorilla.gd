@@ -12,8 +12,6 @@ func init(player_number, player_name, direction):
 	self.player_name = player_name
 	self.player_number = player_number
 	self.direction = direction
-	print("%s %s %s" % [player_name, player_number, direction])
-
 	
 func throw_banana(angle, velocity):
 	var Banana = preload("res://Banana.tscn")

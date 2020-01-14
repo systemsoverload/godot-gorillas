@@ -22,11 +22,11 @@ func _ready():
 	color_rect.rect_position = extents * -1 
 	color_rect.rect_size = extents * 2
 	
-	#
+	
 	var sprites = [gray_building, red_building, blue_building]	
 	var sprite = sprites[Global.randi_range(0, sprites.size())]
 	sprite.visible = true
-	sprite.region_rect = Rect2(Vector2(0,0), extents * 2)
+	sprite.region_rect = Rect2(Vector2(4,0), extents * 2)
 
 
 func extents_set(_extents):

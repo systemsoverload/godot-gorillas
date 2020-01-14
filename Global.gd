@@ -2,25 +2,31 @@ extends Node
 
 onready var Gorilla = preload("res://Gorilla.tscn")
 
+export var friction :float = 1.0
+export var wind: Vector2 = Vector2(1, 1)
+
 var player_1
 var player_2
 var points_to_win: int
-var gravity: float
+var gravity: Vector2 = Vector2(friction, 98.0)
 
 var players = []
 var active_player setget set_active_player
 var current_scene = null
 
 func _ready():
+	# Seed random
+	randomize()
+	
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
-	Global.connect("level_ready", self, "_on_level_ready")
 	
 func start_game(player_1_name, player_2_name, gravity, points_to_win):
 	player_1 = add_player(player_1_name)
 	player_2 = add_player(player_2_name)
 	self.points_to_win = int(points_to_win)
-	self.gravity = float(gravity)
+	if gravity != "9.8":
+		self.gravity = Vector2(friction, float(gravity))
 	goto_scene("res://StartMenu.tscn")
 
 func level_ready(buildings):
@@ -34,7 +40,9 @@ func load_level():
 func add_player(player_name):
 	var player = Gorilla.instance()
 	players.append(player)
-
+	
+	# XXX - Bit of a weird hack, but we need to invert the angles for player 1 and player 2
+	# to ensure that they are always throwing bananas towards each other
 	var direction = Vector2(-1, -1) if players.size() == 1 else Vector2(1, -1)
 	player.init(players.size(), player_name, direction)
 		
