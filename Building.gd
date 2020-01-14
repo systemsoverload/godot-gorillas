@@ -2,6 +2,9 @@ extends Area2D
 
 onready var collision_shape = $CollisionShape2D
 onready var color_rect = $ColorRect
+onready var gray_building = $GrayBuildingSprite
+onready var red_building = $RedBuildingSprite
+onready var blue_building = $BlueBuildingSprite
 
 export(bool) var is_building = true
 export(Vector2) var extents setget extents_set
@@ -18,6 +21,12 @@ func _ready():
 	# TODO - These are just debugging shapes, delete them when sprites work
 	color_rect.rect_position = extents * -1 
 	color_rect.rect_size = extents * 2
+	
+	#
+	var sprites = [gray_building, red_building, blue_building]	
+	var sprite = sprites[Global.randi_range(0, sprites.size())]
+	sprite.visible = true
+	sprite.region_rect = Rect2(Vector2(0,0), extents * 2)
 
 
 func extents_set(_extents):

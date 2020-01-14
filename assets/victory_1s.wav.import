@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/victory_1s.wav-538709a15d2b5ffff61b8b4f62be51e0.sample"
+
+[deps]
+
+source_file="res://assets/victory_1s.wav"
+dest_files=[ "res://.import/victory_1s.wav-538709a15d2b5ffff61b8b4f62be51e0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

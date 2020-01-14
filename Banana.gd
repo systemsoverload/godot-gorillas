@@ -1,21 +1,18 @@
 extends Area2D
 
+signal hit_enemy_gorilla
 
 const explosion_effect = preload("res://ExplosionEffect.tscn")
 
-export(int) var velocity
-export(int) var angle
-
-# Physics variables
+#FIXME - this should be owned by the world not by every banana
 export (Vector2) var GRAVITY = Vector2(0, 200)
-export (Vector2) var motion = Vector2.ZERO
-export (bool) var stopped = false
 
-var is_banana = true
-export(bool) var hit_building = false
-export(bool) var hit_gorilla = false
-export(bool) var overlapping = false
-
+var angle
+var hit_building = false
+var hit_gorilla = false
+var overlapping = false
+var stopped = false
+var velocity
 
 func create_hit_effect(size):
 	var main = get_tree().current_scene
@@ -27,9 +24,12 @@ func create_hit_effect(size):
 	main.add_child(hit_effect)
 	hit_effect.global_position = global_position
 
-func init(angle, impulse):
-	velocity = Vector2(cos(deg2rad(angle)) * impulse * -1, 
-					   sin(deg2rad(angle)) * impulse)
+func init(angle, impulse, direction):
+	# NOTE - Fudge factor to bring the velocity values closer to inline with the original
+	impulse += 120
+
+	velocity = Vector2(cos(deg2rad(angle)) * impulse * direction.x, 
+					   sin(deg2rad(angle)) * impulse) * direction.y
 	
 func _physics_process(delta):
 	if not stopped:
@@ -37,9 +37,11 @@ func _physics_process(delta):
 		velocity = velocity + delta * GRAVITY
 		hit_check()
 
-func hit_check():	
+func hit_check():
+	# FIXME - Minor bug here - overlapping code does not take into account if there is a gorilla IN the overlapping collisions.
+	# Any collision involving a gorilla should be a hit
 	overlapping = false
-	
+	var enemy_gorilla_hit
 	for x in get_overlapping_areas():
 		# XXX - Gross duck-typing for isinstance checks, better way maybe?
 		if x.is_in_group("CollisionBuildings"):
@@ -49,18 +51,28 @@ func hit_check():
 		# FIXME - you should be able to hit yourself _after_ throwing banana a minimal distance
 		if x.is_in_group("CollisionGorillas") and x != self.get_parent():
 			hit_gorilla = true
+			enemy_gorilla_hit = x
 			
 		if x.is_in_group('CollisionA'):
 			# NOTE - reset  hit_building here otherwise _exiting_ an overlap collision causes an explosion
 			hit_building = false
 			overlapping = true
 			
-	if not overlapping:
-		if hit_building:
+	if hit_gorilla:
 			velocity = Vector2.ZERO
-			create_hit_effect("small")
-			queue_free()
-		elif hit_gorilla:
-			velocity = Vector2.ZERO
+			Global.gorilla_hit(enemy_gorilla_hit)
 			create_hit_effect("large")
-			queue_free()	
+			Global.change_turn()
+			queue_free()
+			
+	if hit_building and not overlapping:
+		velocity = Vector2.ZERO
+		create_hit_effect("small")
+		Global.change_turn()
+		queue_free()
+
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	# If a banana flies off the screen and doesnt come back for 6 full seconds, nuke it
+	yield(get_tree().create_timer(4), "timeout")
+	Global.change_turn()
+	queue_free()

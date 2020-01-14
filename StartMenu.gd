@@ -5,9 +5,16 @@ onready var gorilla_2 = $Gorilla_2/Sprite/SpriteAnimator
 
 func _ready():
 	VisualServer.set_default_clear_color(Color.blue)
+	$CenterContainer3/PlayerNames.text = "{p1_name} AND {p2_name}".format({"p1_name": Global.player_1.player_name,
+																		   "p2_name": Global.player_2.player_name})
 	gorilla_1.play('Dance')
 	gorilla_2.play('Dance')
 
+	# XXX - hack, signal off of animation end instead of relying on approximate length of animation	
+	yield(get_tree().create_timer(6), "timeout")
+	Global.load_level()
+
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().change_scene("res://World.tscn")
+		Global.load_level()

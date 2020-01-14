@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://Sun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Input.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scoreboard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sun.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Sun" parent="." instance=ExtResource( 2 )]
+[node name="PlayerUI" parent="." instance=ExtResource( 2 )]
+margin_bottom = 50.0
+
+[node name="Scoreboard" parent="." instance=ExtResource( 3 )]
+position = Vector2( 281, 330 )
+z_index = 10
+
+[node name="Sun" parent="." instance=ExtResource( 4 )]
 position = Vector2( 320, 20 )
+[connection signal="throw_values_entered" from="PlayerUI" to="." method="_on_PlayerUI_throw_values_entered"]
