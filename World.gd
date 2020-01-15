@@ -16,8 +16,8 @@ func set_wind():
 	Global.wind = Global.randi_range(-10, 10)
 	WeatherVane.init(Global.wind)
 	# Place the weather vane  
-	WeatherVane.global_position = Vector2((get_viewport().size.x / 4) - (WeatherVane.total_size / 2), 
-										  (get_viewport().size.y/2) - 7)
+	WeatherVane.global_position = Vector2((get_viewport().get_visible_rect().size.x / 2) - (WeatherVane.total_size / 2), 
+										  (get_viewport().get_visible_rect().size.y) - 7)
 	
 	
 func generate_buildings():
@@ -45,7 +45,7 @@ func generate_buildings():
 		building.global_position.x = next_x
 		
 		# Place bottom edge of building on the bottom of the screen + a bit of padding for the weather vane
-		building.global_position.y = (get_viewport().size.y / 2 - building.extents.y) - 15
+		building.global_position.y = (get_viewport().get_visible_rect().size.y - building.extents.y) - 15
 		
 	Global.level_ready(buildings)
 

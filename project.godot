@@ -17,6 +17,8 @@ _global_script_class_icons={
 
 config/name="Gorillas"
 run/main_scene="res://ConfigMenu.tscn"
+run/disable_stdout=true
+run/disable_stderr=true
 config/icon="res://icon.png"
 
 [autoload]
@@ -30,6 +32,7 @@ window/size/height=360
 window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [importer_defaults]
 

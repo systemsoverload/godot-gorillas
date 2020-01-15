@@ -8,6 +8,7 @@ var hit_building = false
 var hit_gorilla = false
 var overlapping = false
 var stopped = false
+var offscreen = false
 var age = 0
 var velocity
 
@@ -45,7 +46,7 @@ func hit_check():
 		
 		# Gorillas get ~1s worth of immunity frames to suicide bananas
 		if x.is_in_group("CollisionGorillas"):
-			if x != self.get_parent() or age > 1:
+			if x != self.get_parent() or age > 0.85:
 				hit_gorilla = true
 				enemy_gorilla_hit = x
 			
@@ -70,6 +71,11 @@ func hit_check():
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	# If a banana flies off the screen and doesnt come back for 6 full seconds, nuke it
+	offscreen = true
 	yield(get_tree().create_timer(4), "timeout")
-	Global.change_turn()
-	queue_free()
+	if offscreen:
+		Global.change_turn()
+		queue_free()
+
+func _on_VisibilityNotifier2D_viewport_entered(viewport):
+	offscreen = false

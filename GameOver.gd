@@ -2,6 +2,8 @@ extends Node
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
+		Global.player_1.queue_free()
+		Global.player_2.queue_free()
 		Global.goto_scene("res://ConfigMenu.tscn")
 		
 func _ready():
