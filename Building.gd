@@ -1,7 +1,6 @@
 extends Area2D
 
 onready var collision_shape = $CollisionShape2D
-onready var color_rect = $ColorRect
 onready var gray_building = $GrayBuildingSprite
 onready var red_building = $RedBuildingSprite
 onready var blue_building = $BlueBuildingSprite
@@ -18,11 +17,6 @@ func _ready():
 	self.extents = Vector2(34, randi_range(44, 140))
 	collision_shape.set_shape(collision_shape.shape.duplicate())
 	
-	# TODO - These are just debugging shapes, delete them when sprites work
-	color_rect.rect_position = extents * -1 
-	color_rect.rect_size = extents * 2
-	
-	
 	var sprites = [gray_building, red_building, blue_building]	
 	var sprite = sprites[Global.randi_range(0, sprites.size())]
 	sprite.visible = true
@@ -30,7 +24,6 @@ func _ready():
 
 
 func extents_set(_extents):
-	#print("Setting new building h:{h} w:{w}".format({"w":_extents.x, "h": _extents.y}))
 	collision_shape.shape.extents = _extents
 	extents = _extents
 

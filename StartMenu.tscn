@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://StartMenu.gd" type="Script" id=1]
 [ext_resource path="res://pixel_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Gorilla.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/intro_music.wav" type="AudioStream" id=4]
 
 [node name="StartMenu" type="Node"]
 script = ExtResource( 1 )
@@ -49,3 +50,7 @@ position = Vector2( 350, 170 )
 
 [node name="Gorilla_1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 280, 171 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true

@@ -25,13 +25,13 @@ func set_angle(_angle):
 	angle_node.text = _angle
 
 func get_player_name():
-	$VBoxContainer/Name.textpass
+	return $VBoxContainer/Name.text
 	
 func set_player_name(_player_name):
 	$VBoxContainer/Name.text = _player_name
 
-func set_position(position):
-    rect_global_position = position
+func set_position(_position):
+    rect_global_position = _position
 	
 func _on_AngleValue_text_entered(new_text):
 	velocity_node.grab_focus()

@@ -2,8 +2,8 @@ extends Node
 
 onready var Gorilla = preload("res://Gorilla.tscn")
 
-export var friction :float = 1.0
-export var wind: Vector2 = Vector2(1, 1)
+export var friction: float = 10.0
+export var wind: int = 0
 
 var player_1
 var player_2
@@ -17,6 +17,9 @@ var current_scene = null
 func _ready():
 	# Seed random
 	randomize()
+	
+	# Turn the god damn volume down
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -10)
 	
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
@@ -33,6 +36,9 @@ func level_ready(buildings):
 	place_gorilla(player_1, buildings[randi_range(0, 3)])
 	place_gorilla(player_2, buildings[randi_range(5, 7)])
 	self.active_player = player_1
+	var Scoreboard = current_scene.get_node('/root/World/Scoreboard')
+	Scoreboard.player_1 = player_1.score
+	Scoreboard.player_2 = player_2.score
 
 func load_level():
 	goto_scene("res://World.tscn")
