@@ -13,7 +13,7 @@ func _ready():
 	
 func set_wind():
 	"""Generate a random value to be applied as wind force with every level"""
-	Global.wind = Global.randi_range(-10, 10)
+	Global.wind = Global.randi_range(-45, 45)
 	WeatherVane.init(Global.wind)
 	# Place the weather vane  
 	WeatherVane.global_position = Vector2((get_viewport().get_visible_rect().size.x / 2) - (WeatherVane.total_size / 2), 

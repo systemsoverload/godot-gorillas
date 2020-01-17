@@ -4,25 +4,26 @@ const shaft_length = 10
 const head_length = 10
 
 var total_size
-var shaft_origin
 var hp
 var wind_speed setget set_wind_speed
 
 func _ready():
-	shaft_origin = $ArrowShaft.polygon
 	hp = $ArrowHead.polygon
 
-# Single scene debugger	
+## Single scene debugger	
+#	self.position = Vector2(get_viewport().get_visible_rect().size.x / 2, 
+#							  (get_viewport().get_visible_rect().size.y) - 7)
+#
 #func _process(delta):
 #	if Input.is_action_just_pressed("ui_accept"):
 #		# Randomize self.direction
-#		self.wind_speed = Global.randi_range(-10, 10)
+#		self.wind_speed = Global.randi_range(-10000, 10000)
 
 func init(wind):
 	self.wind_speed = wind
 
 func set_wind_speed(_wind_speed):
-	wind_speed = _wind_speed
+	wind_speed = _wind_speed / 2 * -1
 
 	if wind_speed >= 0:
 		$ArrowHead.polygon[0] = Vector2(hp[1].x, hp[0].y)

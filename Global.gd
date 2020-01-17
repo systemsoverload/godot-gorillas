@@ -2,13 +2,12 @@ extends Node
 
 onready var Gorilla = preload("res://Gorilla.tscn")
 
-export var friction: float = 10.0
 export var wind: int = 0
+export var gravity: float = 98.0
 
 var player_1
 var player_2
 var points_to_win: int
-var gravity: Vector2 = Vector2(friction, 98.0)
 
 var players = []
 var active_player setget set_active_player
@@ -28,8 +27,10 @@ func start_game(player_1_name, player_2_name, gravity, points_to_win):
 	player_1 = add_player(player_1_name)
 	player_2 = add_player(player_2_name)
 	self.points_to_win = int(points_to_win)
+	
+	# FIXME - this should work with the form default value
 	if gravity != "9.8":
-		self.gravity = Vector2(friction, float(gravity))
+		self.gravity = float(gravity)
 	goto_scene("res://StartMenu.tscn")
 
 func level_ready(buildings):

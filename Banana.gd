@@ -24,8 +24,7 @@ func create_hit_effect(size):
 
 func init(angle, impulse, direction):
 	# NOTE - Fudge factor to bring the "velocity" values closer to inline with the original
-	#impulse += 120
-	
+	impulse *= 1.75
 	velocity = Vector2(cos(deg2rad(angle)) * impulse * direction.x, 
 					   sin(deg2rad(angle)) * impulse) * direction.y
 	
@@ -34,7 +33,7 @@ func _physics_process(delta):
 		age += delta
 		position += velocity * delta
 		# TODO - Implement wind friction
-		velocity = velocity + delta * Global.gravity # * Global.wind
+		velocity = velocity + (Vector2(Global.wind, Global.gravity) * delta)
 		hit_check()
 
 func hit_check():
