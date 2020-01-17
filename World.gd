@@ -25,7 +25,7 @@ func generate_buildings():
 	var buildings = []
 	
 	# Generate buildings until the visible screen is full
-	while next_x <= get_viewport().get_visible_rect().size.x:
+	while next_x <= get_viewport().get_visible_rect().size.x + 100:
 		var building = Building.instance()
 		buildings.append(building)
 		add_child(building)
@@ -33,9 +33,9 @@ func generate_buildings():
 		# Always place the first building against the left edge of the screen
 #		# and the remaining buildings n+1 to the right
 		if next_x == 0:
-			building.global_position.x = building.extents.x + 2
+			building.global_position.x = building.extents.x + 1
 		else:
-			building.global_position.x = next_x + building.extents.x + 2
+			building.global_position.x = next_x + building.extents.x + 1
 		
 		# Place all subsequent buildings 1 building + 2 px over to create small amount of 
 		# daylight between them
