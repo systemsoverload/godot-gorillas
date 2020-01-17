@@ -35,6 +35,12 @@ text = "Angle:"
 margin_left = 58.0
 margin_right = 166.0
 mouse_filter = 2
+custom_colors/selection_color = Color( 1, 1, 1, 1 )
+custom_colors/cursor_color = Color( 1, 1, 1, 1 )
+custom_colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/clear_button_color = Color( 1, 1, 1, 1 )
 caret_blink = false
 caret_blink_speed = 10.0
 
@@ -54,6 +60,12 @@ margin_left = 85.0
 margin_right = 193.0
 focus_mode = 2
 mouse_filter = 2
+custom_colors/selection_color = Color( 1, 1, 1, 1 )
+custom_colors/cursor_color = Color( 1, 1, 1, 1 )
+custom_colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/clear_button_color = Color( 1, 1, 1, 1 )
 focus_mode = 2
 [connection signal="text_entered" from="VBoxContainer/Angle/Value" to="." method="_on_AngleValue_text_entered"]
 [connection signal="text_entered" from="VBoxContainer/Velocity/Value" to="." method="_on_VelocityValue_text_entered"]
