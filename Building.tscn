@@ -12,10 +12,10 @@ extents = Vector2( 36, 75 )
 "Dynamic",
 "CollisionBuildings",
 ]]
-position = Vector2( 50, 110 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 30
 shape = SubResource( 1 )
 
 [node name="GrayBuildingSprite" type="Sprite" parent="."]

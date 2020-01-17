@@ -10,6 +10,7 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="ConfigMenu" type="Node"]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

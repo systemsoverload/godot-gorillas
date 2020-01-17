@@ -21,32 +21,28 @@ func set_wind():
 	
 	
 func generate_buildings():
-	var last_x = 0
 	var next_x = 0
 	var buildings = []
-		
-	# TODO - 12 is just enough buildings to fill the test resolution
-	# this should be smarter
-	for x in 12:
-		var building = Building.instance()		
+	
+	# Generate buildings until the visible screen is full
+	while next_x <= get_viewport().get_visible_rect().size.x:
+		var building = Building.instance()
 		buildings.append(building)
 		add_child(building)
 		
 		# Always place the first building against the left edge of the screen
-		# and the remaining buildings n+1 to the right
-		if last_x == 0:
-			next_x = building.extents.x
+#		# and the remaining buildings n+1 to the right
+		if next_x == 0:
+			building.global_position.x = building.extents.x + 2
 		else:
-			# Place all subsequent buildings 1 building + 2 px over to create small amount of 
-			# daylight between them
-			next_x += building.extents.x * 2 + 2
-			
-		last_x = next_x
-		building.global_position.x = next_x
+			building.global_position.x = next_x + building.extents.x + 2
 		
+		# Place all subsequent buildings 1 building + 2 px over to create small amount of 
+		# daylight between them
+		next_x = building.global_position.x + building.extents.x
+
 		# Place bottom edge of building on the bottom of the screen + a bit of padding for the weather vane
 		building.global_position.y = (get_viewport().get_visible_rect().size.y - building.extents.y) - 15
-		
 	Global.level_ready(buildings)
 
 func _on_PlayerUI_throw_values_entered(angle, velocity):
