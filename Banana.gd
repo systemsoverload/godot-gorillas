@@ -32,7 +32,6 @@ func _physics_process(delta):
 	if not stopped:
 		age += delta
 		position += velocity * delta
-		# TODO - Implement wind friction
 		velocity = velocity + (Vector2(Global.wind, Global.gravity) * delta)
 		hit_check()
 
