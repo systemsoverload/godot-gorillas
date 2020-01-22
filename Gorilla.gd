@@ -27,7 +27,8 @@ func throw_banana(angle, velocity):
 
 func _on_Banana_hit_enemy_gorilla(enemy_gorilla):
 	# TODO - replace global function calls by bubbling these signals up to game state obj
-	print("Hit %s" % enemy_gorilla)
+	#print("Hit %s" % enemy_gorilla)
+	pass
 
 func dance():
 	$Sprite/SpriteAnimator.play('Dance')
